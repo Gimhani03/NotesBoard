@@ -5,15 +5,16 @@ import { Link } from 'react-router'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, setNotes }) => {
 
     const handleDelete = async(e, id) =>{
         e.preventDefault();
-        
+
         if(!window.confirm("Are you sure you want to delete this note?")) return;
 
         try {
             await axios.delete(`http://localhost:5001/deletenotes/${id}`);
+            setNotes((prev) => prev.filter((note) => note._id !== id));
             toast.success("Note deleted successfully");
             // Optionally, you can refresh the notes list or remove the deleted note from the UI
         } catch (error) {
