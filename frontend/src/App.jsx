@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 import Home from './pages/Home'
 import CreateNotes from './pages/CreateNotes'
 import NoteDetails from './pages/NoteDetails'
+import EditNotes from './pages/EditNotes'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Home/>} />
         <Route path="/create" element={<CreateNotes/>} />
         <Route path="/note/:id" element={<NoteDetails/>} />
+        <Route path="/edit/:id" element={<EditNotes/>} />
       </Routes>
     </div>
   )
