@@ -22,6 +22,7 @@ const NoteCard = ({ note, setNotes }) => {
             toast.error("Error deleting note");
         }
     }
+
   return (
     <Link to={`/note/${note._id}`} className='card bg-base-100 hover:shadow-lg transition-all duration-200 border-t-4 border-info border-solid p-4 rounded-lg shadow-md'>
        
@@ -31,7 +32,9 @@ const NoteCard = ({ note, setNotes }) => {
           <span className='text-sm text-base-content/60'>{formatDate(new Date(note.createdAt))}</span>
 
            <div className='flex items-center gap-4'>
-            <PenSquareIcon className='size-4'/>
+            <Link to={`/edit/${note._id}`}>
+              <PenSquareIcon className='size-4' />
+            </Link>
             <button className='btn btn-ghost btn-xs text-error'>
             <Trash2Icon className='size-4' onClick={(e) => handleDelete(e, note._id)}/>
             </button>
