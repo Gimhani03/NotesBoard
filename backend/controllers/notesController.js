@@ -11,6 +11,19 @@ export const getnotes = async (req,res) => {
    }
 }
 
+export const getnotesbyid = async (req, res) => {
+   try {
+      const note = await Note.findById(req.params.id).select('title content createdAt -_id');
+      if(!note){
+         return res.status(404).json({message: 'Note not found', type: 'error'});
+      }
+      res.status(200).json(note);
+   } catch (error) {
+      console.log("Error in getting note", error);
+      res.status(500).json({message: 'Server Error', type: 'error'});
+   }
+}
+
 export const createnotes = async(req,res) => {
    try {
     const {title, content} = req.body;
